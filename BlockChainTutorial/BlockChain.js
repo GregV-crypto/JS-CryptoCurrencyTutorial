@@ -57,9 +57,9 @@ const SHA256 = require('crypto-js/sha256');
       * @param {*} transcations - main data passed into the block
       * @param {*} previousHash - link to previous block
       */
-     constructor(timestamp, transcations, previousHash = ""){
+     constructor(timestamp, transactions, previousHash = ""){
          this.timestamp = timestamp;
-         this.transcations = transcations;
+         this.transactions = transcations;
          this.previousHash = previousHash;
          this.hash = this.calculateHash();
          //number only used once to increase mining difficulty per attempted mine
@@ -69,7 +69,7 @@ const SHA256 = require('crypto-js/sha256');
      calculateHash(){
          //SHA256 is the algorithm used to create the individual hash for each
          return SHA256(this.timestamp + this.previousHash
-                       + this.nonce + JSON.stringify(this.transcations)).toString();
+                       + this.nonce + JSON.stringify(this.transactions)).toString();
      }
  
      mineBlock(difficulty){
